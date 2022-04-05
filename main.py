@@ -1,6 +1,5 @@
 import turtle
 import random
-import time
 
 def drawSquare(myturtle=None, width=0, top_left_x=0, top_left_y=0):
   myturtle.up()
@@ -79,7 +78,48 @@ def montePi(myturtle=None, number_darts=0):
   pie_four = inside_count / number_darts
   pie_guess = pie_four * 4
   return pie_guess
-        
+
+
+def trivia(myscreen=None, radius=0):
+  correct_ans = 0
+  print("It's time for a game of trivia! Respond using 1, 2, 3, or 4")
+  print("Question 1: How many seconds are in one hour?")
+  print("1) 1000")
+  print("2) 360")
+  print("3) 3600")
+  print("4) 4250")
+  guess_one = int(input("Enter 1, 2, 3, or 4: "))
+  if (guess_one == 3):
+    correct_ans = correct_ans + 1
+  print("Question 2: Who has the most points in NBA history?")
+  print("1) Steph Curry")
+  print("2) Michael Jordan")
+  print("3) LeBron James")
+  print("4) Kareem Abdul-Jabbar")
+  guess_two = int(input("Enter 1, 2, 3, or 4: "))
+  if (guess_two == 4):
+    correct_ans = correct_ans + 1
+  print("Question 3: What animal has the highest blood pressure?")
+  print("1) Giraffe")
+  print("2) Bear")
+  print("3) Shark")
+  print("4) Zebra")
+  guess_three = int(input("Enter 1, 2, 3, or 4: "))
+  if (guess_three == 1):
+    correct_ans = correct_ans + 1
+  print("Here is a visual of your results!")
+  myscreen.setworldcoordinates(-200,-200,200,200)
+  visual = turtle.Turtle()
+  for i in range(1, 4):
+    if (correct_ans >= i):
+      visual.color('green')
+    else:
+      visual.color('red')
+    visual.begin_fill()  
+    visual.circle(radius, 120)
+    visual.end_fill()
+  return (correct_ans/3) * 100
+  
 def main():
     # Get number of darts for simulation from user
     # Note continuation character <\> so we don't go over 78 columns:
@@ -119,6 +159,8 @@ def main():
     print("\nThe estimation of pi using "+str(number_darts)+" virtual darts is " + str(approx_pi))
     print("\tPart C Complete...")
     # Don't hide or mess with window while it's 'working'
+    darty.clear()
+    percent = trivia(window, 100)
+    print("\nYou got a "+str(percent)+"% on the quiz! " )
     window.exitonclick()
-
 main()
